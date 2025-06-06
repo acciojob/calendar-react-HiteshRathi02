@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 
 const Calendar = () => {
   const today = new Date();
-  const [month, setMonth] = useState(today.getMonth()); 
+  const [month, setMonth] = useState(today.getMonth());
   const [year, setYear] = useState(today.getFullYear());
   const [isEditingYear, setIsEditingYear] = useState(false);
-
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -69,49 +68,53 @@ const Calendar = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-    <h2>Calendar</h2>
+      <h2 id="heading">Calendar</h2>
+
       <div style={{ marginBottom: '20px' }}>
-  <select
-    id="months"
-    onChange={(e) => setMonth(Number(e.target.value))}
-    value={month}
-    style={{ marginRight: '10px' }}
-  >
-    {monthNames.map((month, ind) => (
-      <option key={ind} value={ind}>
-        {month}
-      </option>
-    ))}
-  </select>
+        <select
+          id="months"
+          onChange={(e) => setMonth(Number(e.target.value))}
+          value={month}
+          style={{ marginRight: '10px' }}
+        >
+          {monthNames.map((month, ind) => (
+            <option key={ind} value={ind}>
+              {month}
+            </option>
+          ))}
+        </select>
 
-  {isEditingYear ? (
-    <input
-      type="number"
-      value={year}
-      autoFocus
-      onChange={(e) => setYear(Number(e.target.value))}
-      onBlur={() => setIsEditingYear(false)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter') setIsEditingYear(false);
-      }}
-    />
-  ) : (
-    <span
-      onDoubleClick={() => setIsEditingYear(true)}
-      style={{
-        cursor: 'pointer',
-        borderBottom: '1px dashed gray',
-        padding: '4px',
-        fontSize: '16px',
-      }}
-      title="Double-click to edit"
-    >
-      {year}
-    </span>
-  )}
-</div>
+        {/* Month name visible with id="month" */}
+        <p id="month">{monthNames[month]}</p>
 
-
+        {isEditingYear ? (
+          <input
+            id="year-text-box"
+            type="number"
+            value={year}
+            autoFocus
+            onChange={(e) => setYear(Number(e.target.value))}
+            onBlur={() => setIsEditingYear(false)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') setIsEditingYear(false);
+            }}
+          />
+        ) : (
+          <span
+            id="year"
+            onDoubleClick={() => setIsEditingYear(true)}
+            style={{
+              cursor: 'pointer',
+              borderBottom: '1px dashed gray',
+              padding: '4px',
+              fontSize: '16px',
+            }}
+            title="Double-click to edit"
+          >
+            {year}
+          </span>
+        )}
+      </div>
 
       <table style={{ margin: 'auto', borderCollapse: 'collapse' }}>
         <thead>
@@ -142,10 +145,10 @@ const Calendar = () => {
       </table>
 
       <div style={{ marginTop: '20px' }}>
-        <button onClick={() => changeYear(-1)}> Prev Year</button>
-        <button onClick={() => changeMonth(-1)}>Prev Month</button>
-        <button onClick={() => changeMonth(1)} style={{ marginLeft: '10px' }}>Next Month</button>
-        <button onClick={() => changeYear(1)}>Next Year</button>
+        <button id="prev-year" onClick={() => changeYear(-1)}>Prev Year</button>
+        <button id="prev-month" onClick={() => changeMonth(-1)}>Prev Month</button>
+        <button id="next-month" onClick={() => changeMonth(1)} style={{ marginLeft: '10px' }}>Next Month</button>
+        <button id="next-year" onClick={() => changeYear(1)}>Next Year</button>
       </div>
     </div>
   );
