@@ -142,11 +142,10 @@ const Calendar = () => {
       </table>
 
       <div style={{ marginTop: '20px' }}>
+        <button onClick={() => changeYear(-1)}> Prev Year</button>
         <button onClick={() => changeMonth(-1)}>Prev Month</button>
         <button onClick={() => changeMonth(1)} style={{ marginLeft: '10px' }}>Next Month</button>
-        <br /><br />
-        <button onClick={() => changeYear(-1)}> Prev Year</button>
-        <button onClick={() => changeYear(1)} style={{ marginLeft: '10px' }}>Next Year</button>
+        <button onClick={() => changeYear(1)}>Next Year</button>
       </div>
     </div>
   );
